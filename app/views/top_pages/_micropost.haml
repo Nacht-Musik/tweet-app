@@ -1,0 +1,5 @@
+= form_for post, html: {class: 'form-group'} do |f|
+  = f.text_field :content, class: 'form-control micropost-area', placeholder: 'いまなにしてる？'
+  = f.hidden_field :user_id
+  .text-right
+    = f.submit 'Tweet', class: 'btn btn-primary'

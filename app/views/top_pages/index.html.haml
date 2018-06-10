@@ -1,0 +1,15 @@
+-# %h1 TopPages#index
+-# %p Find me in app/views/top_pages/index.html.haml
+%article#page--top
+  .row
+    %section.user-space.col-3
+    %section.post-space.col-6
+      - # micropost form
+      - if user_signed_in?
+        = render 'top_pages/micropost', post: @micropost
+      - # micropost index
+      %hr
+      .post-list
+        - @posts.each do |post|
+          = render 'microposts/micropost', post: post
+    %section.recommend.col-3
