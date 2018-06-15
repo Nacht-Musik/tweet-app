@@ -10,6 +10,5 @@
     = render 'application/header'
     %main
       %section.flash-area.text-center
-        - flash.each do |key, value|
-          = content_tag(:div, value, class: "#{key}")
+        = render 'layouts/flash'
       = yield
