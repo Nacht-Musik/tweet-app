@@ -13,11 +13,14 @@
         %ul.navbar-nav.ml-auto
           - if user_signed_in?
             %li.nav-item
-              = link_to 'Logout', destroy_user_session_path, class: "btn btn-secondary nav-link"
+              = link_to 'ログアウト', destroy_user_session_path,
+                class: "btn btn-secondary nav-link"
             %li.nav-item
-              = link_to current_user.name, edit_user_registration_path, class: "btn btn-secondary nav-link"
+              = link_to current_user.name, edit_user_registration_path,
+                class: "btn btn-secondary nav-link"
           - else
             %li.nav-iteme
-              = link_to 'Signup', new_user_registration_path, class: "btn btn-secondary nav-link"
+              = link_to 'Signup', new_user_registration_path,
+                class: "btn btn-secondary nav-link"
             %li.nav-iteme
-              = link_to 'Signin', new_user_session_path, class: "btn btn-secondary nav-link"
+              = link_to 'ログイン', new_user_session_path, class: "btn btn-secondary nav-link"
