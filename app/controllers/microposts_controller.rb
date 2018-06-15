@@ -1,4 +1,6 @@
 class MicropostsController < ApplicationController
+  before_action :set_micropost, only: [:show]
+
   def create
     # binding.pry
     post = Micropost.new(micropost_param)
@@ -19,5 +21,9 @@ class MicropostsController < ApplicationController
   private
     def micropost_param
       params.require(:micropost).permit(:user_id, :content)
+    end
+
+    def set_micropost
+      @micropost = Micropost.find(params[:id])
     end
 end

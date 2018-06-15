@@ -8,8 +8,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body#body--tweet-app
     = render 'application/header'
-    %main
+    %main.bg-light
       %section.flash-area.text-center
-        - flash.each do |key, value|
-          = content_tag(:div, value, class: "#{key}")
-      = yield
+        = render 'layouts/flash'
+      .container
+        = yield

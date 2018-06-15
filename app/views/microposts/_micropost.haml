@@ -1,7 +1,8 @@
-.card.bg-light.border-dark
+.card.border-dark.mb-3
   .card-body
+    .card-title
+      %h4= post.content
+    %p.card-text
+      %small.text-muted= post.created_at
+  .card-footer.bg-transparent
     %p= @users.find(post.user_id).name + " <" + @users.find(post.user_id).email + ">"
-    %hr
-    %p= post.content
-    %hr
-    %p= post.created_at

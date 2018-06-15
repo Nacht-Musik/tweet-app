@@ -1,2 +1,8 @@
-%h1 Microposts#show
-%p Find me in app/views/microposts/show.html.haml
+.card
+  .card-header
+    = @micropost.content
+  .card-body
+    -# = link_to '編集', edit_micropost_path(@micropost), class: 'btn btn-outline-info'
+    -# = link_to '削除', micropost, method: :delete, data: { confirm: '削除しますか？'},
+      class: 'btn btn-outline-danger'
+    = link_to '戻る', :back, class: 'btn btn-outline-primary'
