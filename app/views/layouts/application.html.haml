@@ -6,12 +6,12 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body#body--tweet-app
+  %body#body--tweet-app.d-flex.flex-column
     = render 'application/header'
     %main.bg-light
       %section.flash-area.text-center
         = render 'layouts/flash'
       .container
         = yield
-  %footer.footer
-    = switch_user_select
+    %footer#app--footer.text-muted
+      = switch_user_select

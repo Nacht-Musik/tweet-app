@@ -4,5 +4,16 @@
       %h4= post.content
     %p.card-text
       %small.text-muted= post.created_at
+    %p.span-right
+      - if post.user_id == current_user.id
+        自分の
+      - else
+        他人の
+    %p.span-right
+      - unless post.user_id == current_user.id
+        - if follows.include?(post.user_id)
+          フォロー中
+        - else
+          のんフォロー
   .card-footer.bg-transparent
     %p= @users.find(post.user_id).name + " <" + @users.find(post.user_id).email + ">"

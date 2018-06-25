@@ -8,5 +8,5 @@
         %hr
       .post-list
         - @posts.each do |post|
-          = render 'microposts/micropost', post: post
+          = render 'microposts/micropost', post: post, follows: @follow_users
     %section.recommend.col-3
