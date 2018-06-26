@@ -1,0 +1,7 @@
+- if users
+  %ul
+    - users.each do |user|
+      %li
+        = user.name
+- else
+  %p ユーザーデータ取れてないっす。

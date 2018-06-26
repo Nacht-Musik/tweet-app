@@ -1,0 +1,11 @@
+#micro-post-list
+  - if timeline
+    - timeline.each do |post|
+      .row
+        .col-2
+        .col-8
+          = render 'microposts/micropost', post: post, follows: nil
+        .col-2
+    .card-end
+  - else
+    %p timelineのデータ取れてないっす。

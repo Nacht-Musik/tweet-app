@@ -3,79 +3,33 @@
     %h2
       ユーザー情報
     %ul.nav.nav-tabs.card-header-tabs
-      -# %li.nav-item
-      -#   %a.nav-link.btn timeline
-      -# %li.nav-item
-      -#   %a.nav-link.btn follow
-      -# %li.nav-item
-      -#   %a.nav-link.btn follower
       %li.nav-item
-        %a#edit-tab.nav-link.btn.active 編集
+        %a.active.nav-link{href: '#tab1', 'data-toggle': 'tab'}
+          timeline
       %li.nav-item
-        %a#delete-tab.nav-link.btn 削除
-  #edit-body.card-body
-    = form_for(resource, as: resource_name, url: registration_path(resource_name),
-      html: { method: :put }) do |f|
-      = devise_error_messages!
-      .form-group
-        .field
-          = f.label '名前'
-          %br
-          = f.text_field :name, autofocus: true, autocomplete: "user"
-      .form-group
-        .field
-          = f.label 'メールアドレス'
-          %br
-          = f.email_field :email, autocomplete: "email"
-      .form-group
-        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-          %div
-            Currently waiting confirmation for: #{resource.unconfirmed_email}
-      .form-group
-        .field
-          = f.label 'パスワード'
-          %i (変更したくない場合は空白)
-          %br
-          = f.password_field :password, autocomplete: "off"
-          - if @minimum_password_length
-            %br
-            %em
-              = @minimum_password_length
-              文字以上
-      .form-group
-        .field
-          = f.label 'パスワード(確認)'
-          %br
-          = f.password_field :password_confirmation, autocomplete: "off"
-      %hr
-      .form-group
-        .field
-          = f.label '現在のパスワード'
-          %i (更新するためには現在のパスワードが必要です)
-          %br
-          = f.password_field :current_password, autocomplete: "off"
-      .form-group
-        .actions
-          = f.submit "更新", class: "btn btn-info"
-  #delete-body.card-body.d-none
-    %p
-      ユーザー情報を削除しますか？
-      #{button_to "削除", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "btn btn-danger"}
+        %a.nav-link{href: '#tab2', 'data-toggle': 'tab'}
+          follow
+      %li.nav-item
+        %a.nav-link{href: '#tab3', 'data-toggle': 'tab'}
+          follower
+      %li.nav-item
+        %a.nav-link{href: '#tab4', 'data-toggle': 'tab'}
+          編集
+      %li.nav-item
+        %a.nav-link{href: '#tab5', 'data-toggle': 'tab'}
+          削除
+  .card-body
+    .tab-content
+      .tab-pane.active#tab1
+        = render 'timeline', timeline: @timeline
+      .tab-pane#tab2
+        = render 'userlist', users: @follows
+      .tab-pane#tab3
+        = render 'userlist', users: @followers
+      .tab-pane#tab4
+        = render 'setting'
+      .tab-pane#tab5
+        = render 'destroy'
+
   .card-footer
     = link_to "戻る", :back, class: "btn btn-primary"
-
-:javascript
-  $(document).ready(function(){
-    $('#edit-tab').click(function(){
-      $(this).addClass("active");
-      $('#delete-tab').removeClass("active");
-      $('#delete-body').addClass("d-none");
-      $('#edit-body').removeClass("d-none");
-    });
-    $('#delete-tab').click(function(){
-      $(this).addClass("active");
-      $('#edit-tab').removeClass("active");
-      $('#edit-body').addClass("d-none");
-      $('#delete-body').removeClass("d-none");
-    });
-  });

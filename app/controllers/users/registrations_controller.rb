@@ -15,9 +15,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    # followユーザの取得
+    @follows = current_user.followings
+    # followerユーザの取得
+    @followers = current_user.followers
+    # timelineの取得
+    id_lists = @follows.ids
+    id_lists.push(current_user.id)
+    @timeline = Micropost.where(user_id: id_lists)
+    super
+  end
 
   # PUT /resource
   # def update

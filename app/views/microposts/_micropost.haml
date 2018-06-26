@@ -4,14 +4,9 @@
       %h4= post.content
     %p.card-text
       %small.text-muted= post.created_at
-    -# %p.span-right
-    -#   - if post.user_id == current_user.id
-    -#     自分の
-    -#   - else
-    -#     他人の
     %p.span-right
       - unless post.user_id == current_user.id
-        - if follows.include?(post.user_id)
+        - if follows.present? && follows.include?(post.user_id)
           = form_for(current_user.relationships.find_by(follow_id: post.user.id), html: {method: :delete}) do |f|
             = f.hidden_field :user_id
             = f.hidden_field :follow_id, value: post.user_id
@@ -22,4 +17,4 @@
             = f.hidden_field :follow_id, value: post.user_id
             = f.submit 'follow', class: 'btn btn-primary'
   .card-footer.bg-transparent
-    %p= @users.find(post.user_id).name + " <" + @users.find(post.user_id).email + ">"
+    %p= post.user.name + " <" + post.user.email + ">"
