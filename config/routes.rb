@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  root to: 'top_pages#index'
   resources :microposts, only: [:create, :show, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
@@ -8,7 +10,6 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions',
     :registrations => 'users/registrations'
   }
-  root to: 'top_pages#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
