@@ -4,9 +4,9 @@
     %section.post-space.col-6
       - if user_signed_in?
         = render 'top_pages/micropost', post: @micropost
-      - else
         %hr
-      .post-list
-        - @posts.each do |post|
-          = render 'microposts/micropost', post: post, follows: @follow_users
+        .post-list
+          - @posts.each do |post|
+            = render 'microposts/micropost', post: post, follows: @follow_users
+      - else
     %section.recommend.col-3
